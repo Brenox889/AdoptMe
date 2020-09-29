@@ -1,15 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-import NavBar from './components/NavBar' 
+import SearchParams from './components/SearchParams'
+import NavBar from './components/NavBar'
 import './global.css'
 
 function App() {
   return (
-  <div>
+    <div>
       <NavBar />
-     
-  </div>
-  );
+      <SearchParams />
+    </div>
+  )
 }
 
-export default App;
+export default App
