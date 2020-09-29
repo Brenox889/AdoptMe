@@ -1,13 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import logo from '../../assets/logoAdopt.png'
+import useName from '../context/NameContext';
 
-import {Header} from './styles'
+import logo from '../../assets/logoAdopt.png';
 
-export default function NavBar(){
-    return(
-        <Header>
-            <img src={logo} />
-        </Header>
-    )
+import { Header } from './styles';
+
+export default function NavBar() {
+  const { name, setName } = useName();
+
+  return (
+    <Header>
+      {}
+      <img src={logo} />
+    </Header>
+  );
 }
