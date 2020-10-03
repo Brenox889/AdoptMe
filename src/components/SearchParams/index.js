@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
-import { ANIMALS } from '@frontendmasters/pet';
+import React, { useState, useEffect } from 'react';
+import pet, { ANIMALS } from '@frontendmasters/pet';
 import useDropdown from '../useDropdown';
 
 import { Container } from './styles';
 
-import pet from '../../assets/icons/pawprint.png';
+import pawprint from '../../assets/icons/pawprint.png';
 
 export default function SearchParams() {
   const [location, setLocation] = useState('');
   const [animal, AnimalDropdown] = useDropdown('dog', ANIMALS);
-  const [breed, BreedDropdown] = useDropdown('breeds', breeds);
+  const [breeds, setBreeds] = useState([]);
+  const [BreedDropdown, setBreed] = useDropdown('breed', breeds);
+
+  useEffect(() => {
+    setBreeds([]);
+    setBreed('');
+    pet.breeds(animal).then(({ breeds }) => {
+      const breedStrings = breeds.map(({ name }) => name);
+      setBreeds(breedStrings);
+    }, console.error);
+  }, [animal]);
 
   return (
     <Container>
-      <img src={pet} alt="pet" />
+      <img src={pawprint} alt="pet" />
       <span>Encontre o novo membro da familía</span>
       <form
         onSubmit={(e) => {
