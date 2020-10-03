@@ -7,12 +7,12 @@ import logo from '../../assets/logoAdopt.png';
 import { Header } from './styles';
 
 export default function NavBar() {
-  const { name, setName } = useName('');
+  const { name } = useName('');
 
   return (
     <Header>
-      <h3> Bem vindo {name ? name : ''}</h3>
-      <img src={logo} />
+      {/* <h3> Bem vindo {name ? name : ''}</h3> */}
+      <img src={logo} alt="Adopt Me" />
     </Header>
   );
 }
