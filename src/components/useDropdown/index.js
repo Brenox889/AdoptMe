@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const useDropdown = (defaultState, options) => {
   const [state, setState] = useState(defaultState);
 
-  const Dropdown = () => {
+  const Dropdown = () => (
     <select
       value={state}
       onChange={(e) => setState(e.target.value)}
@@ -16,8 +16,8 @@ const useDropdown = (defaultState, options) => {
           {item}
         </option>
       ))}
-    </select>;
-  };
+    </select>
+  );
   return [state, Dropdown];
 };
 
