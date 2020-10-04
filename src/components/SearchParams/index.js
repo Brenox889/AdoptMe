@@ -10,11 +10,11 @@ export default function SearchParams() {
   const [location, setLocation] = useState('');
   const [animal, AnimalDropdown] = useDropdown('dog', ANIMALS);
   const [breeds, setBreeds] = useState([]);
-  const [BreedDropdown, setBreed] = useDropdown('breed', breeds);
+  const [BreedDropdown, SetBreed] = useDropdown('breed', breeds);
 
   useEffect(() => {
     setBreeds([]);
-    setBreed('');
+    SetBreed('');
     pet.breeds(animal).then(({ breeds }) => {
       const breedStrings = breeds.map(({ name }) => name);
       setBreeds(breedStrings);
@@ -37,19 +37,8 @@ export default function SearchParams() {
           onChange={(e) => setLocation(e.target.value)}
         />
         <AnimalDropdown />
-        <BreedDropdown />
-        {/* <select
-          value={animal}
-          onChange={(e) => setAnimal(e.target.value)}
-          onBlur={(e) => setAnimal(e.target.value)}
-        >
-          <option>Choose a Animal</option>
-          {ANIMALS.map((animal) => (
-            <option key={animal} value={animal}>
-              {animal}
-            </option>
-          ))}
-        </select> */}
+        <SetBreed />
+        <button>Submit</button>
       </form>
     </Container>
   );
