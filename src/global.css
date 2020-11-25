@@ -11,8 +11,8 @@ body {
   grid-template-columns: 1fr 2fr;
 }
 .img-Container > img {
-  width: 64.55%;
-  height: 41vmax;
+  width: 65%;
+  height: 41.5vmax;
   background-color: #006c80;
   position: absolute;
   /* background: url('./assets/budog.jpg'); */

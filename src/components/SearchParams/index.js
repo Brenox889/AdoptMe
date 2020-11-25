@@ -8,10 +8,23 @@ import pawprint from '../../assets/icons/pawprint.png';
 
 export default function SearchParams() {
   const [location, setLocation] = useState('');
-  const [animal, AnimalDropdown] = useDropdown('dog', ANIMALS);
+  const [animal, AnimalDropdown] = useDropdown('Choose a Pet', 'dog', ANIMALS);
+  const [pets, setPets] = useState([]);
   const [breeds, setBreeds] = useState([]);
-  const [BreedDropdown, setBreed] = useDropdown('breed', breeds);
+  const [breed, BreedDropdown, setBreed] = useDropdown(
+    'Choose the breed',
+    'breed',
+    breeds
+  );
 
+  async function requestPets() {
+    const { animals } = await pet.animals({
+      location,
+      breed,
+      type: animal
+    });
+    setPets(animals || []);
+  }
   useEffect(() => {
     setBreeds([]);
     setBreed('');
@@ -30,6 +43,7 @@ export default function SearchParams() {
           e.preventDefault();
         }}
       >
+        <label htmlFor="location">Location</label>
         <input
           id="location"
           placeholder="Location"
@@ -38,18 +52,7 @@ export default function SearchParams() {
         />
         <AnimalDropdown />
         <BreedDropdown />
-        {/* <select
-          value={animal}
-          onChange={(e) => setAnimal(e.target.value)}
-          onBlur={(e) => setAnimal(e.target.value)}
-        >
-          <option>Choose a Animal</option>
-          {ANIMALS.map((animal) => (
-            <option key={animal} value={animal}>
-              {animal}
-            </option>
-          ))}
-        </select> */}
+        <button>Submit</button>
       </form>
     </Container>
   );
